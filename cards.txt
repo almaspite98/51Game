@@ -1,0 +1,8 @@
+"VII" 1
+"VIII" 8
+"IX" 0
+"X" -1
+"Alsó" 2
+"Felső" 3
+"Király" 4
+"Ász" 1 

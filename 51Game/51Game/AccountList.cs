@@ -6,19 +6,20 @@ using System.Text;
 
 public class AccountList {
 
-    public AccountList() {
+    private List<Player> players;
+
+    public AccountList(string accountListFileName)
+    {
+        //beolvasás a fájlból az accountokat és adataikat
     }
-
-    private Player players;
-
-
+    
 
     /// <summary>
     /// @param string name 
     /// @param string password
     /// </summary>
-    public void Login(void string name, void string password) {
-        // TODO implement here
+    public void Login(string name, string password) {
+        players.Add(new Player(name, password));
     }
 
 }

@@ -5,17 +5,17 @@ using System.Linq;
 using System.Text;
 
 public class GameManager {
+    private List<Player> players;
+    private Deck deck;
+    private Pile pile;
 
     public GameManager() {
+
     }
 
-    private Player players;
-
-
-
-
     public void Start() {
-        // TODO implement here
+        //init shit here
+
     }
 
     public void Lose() {

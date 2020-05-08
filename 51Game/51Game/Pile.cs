@@ -5,19 +5,17 @@ using System.Linq;
 using System.Text;
 
 public class Pile {
+    private List<Card> cards;
 
     public Pile() {
+        cards = new List<Card>();
     }
-
-
-    private Card cards;
-
 
     /// <summary>
     /// @param Card c
     /// </summary>
-    public void AddCard(void Card c) {
-        // TODO implement here
+    public void AddCard(Card c) {
+        cards.Add(c);
     }
 
 }

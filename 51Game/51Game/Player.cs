@@ -6,22 +6,23 @@ using System.Text;
 
 public class Player {
     private static uint STARTING_MONEY = 2000;
-    private string name;
-    private string password;
-    private uint coins;
+
+    public string Name { get; set; }
+    public string Password { get; set; }
+    public uint Coins { get; set; }
     private List<Card> cards;
 
     public Player() {
-        name = "Random_player";
-        password = "pwd123";
-        coins = STARTING_MONEY;
+        Name = "Random_player";
+        Password = "pwd123";
+        Coins = STARTING_MONEY;
     }
 
     public Player(string name, string password)
     {
-        this.name = name;
-        this.password = password;
-        coins = STARTING_MONEY;
+        Name = name;
+        Password = password;
+        Coins = STARTING_MONEY;
     }
 
     public void Turn() {

@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 
 public class Card {
-    private string name;
-    private uint value;
+    public string Name { get; set; }
+    public uint Value { get; set; }
 
     public Card(string name, uint value)
     {
-        this.name = name;
-        this.value = value;
+        this.Name = name;
+        this.Value = value;
     }
 }

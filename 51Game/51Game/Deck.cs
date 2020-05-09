@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -14,7 +15,7 @@ public class Deck {
 
     public Card DrawCard() {
         int i = new Random().Next(0, cards.Count);
-        Console.WriteLine("Generált random szám: " + i);
+        Debug.WriteLine("Generált random szám: " + i);
         Card c = cards[i];
         cards.Remove(c);
         return c;

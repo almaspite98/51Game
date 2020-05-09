@@ -10,7 +10,6 @@ public class GameManager {
     private Pile pile;
 
     public GameManager() {
-
     }
 
     public void Start() {

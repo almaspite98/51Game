@@ -14,10 +14,10 @@ public class AccountList {
         //beolvasás a fájlból az accountokat és adataikat
         string jsonString = File.ReadAllText(accountListFilePath);
         Players=JsonConvert.DeserializeObject<List<Player>>(jsonString);
-        Debug.WriteLine(Players);
+        Players.ForEach(i => Debug.WriteLine("{0}", i));
     }
     
-    private void ScanAccountsFromFile(string accountListFileName)
+    /*private void ScanAccountsFromFile(string accountListFileName)
     {
         try
         {
@@ -40,7 +40,7 @@ public class AccountList {
             Debug.WriteLine("The file could not be read:");
             Debug.WriteLine(e.Message);
         }
-    }
+    }*/
 
     /// <summary>
     /// @param string name 

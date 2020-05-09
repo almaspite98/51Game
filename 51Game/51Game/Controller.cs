@@ -12,13 +12,13 @@ public class Controller {
 
     static int Main(string[] args)
     {
+        accountList = new AccountList(accountListFileName);
         gm = new GameManager();
         //init accountListFileName
         //String FilePath;
         //FilePath = Server.MapPath("/MyWebSite");
 
-        accountList = new AccountList(accountListFileName);
-        Console.WriteLine("Hello world");
+        
         return 0;
     }
 }

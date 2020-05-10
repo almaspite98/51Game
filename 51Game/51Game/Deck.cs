@@ -10,21 +10,23 @@ public class Deck {
 
     public Deck(string cardsFilePath)
     {
+        Cards = new List<Card>();
         //beolvasás a fájlból az accountokat és adataikat
         string jsonString = File.ReadAllText(cardsFilePath);
-        Cards = JsonConvert.DeserializeObject<List<Card>>(jsonString);
-        Cards.ForEach(i => Debug.WriteLine("{0}", i));
-        Cards.AddRange(Cards);
-        Cards.AddRange(Cards);
-        Cards.AddRange(Cards);
+        List<Card> oneSet= JsonConvert.DeserializeObject<List<Card>>(jsonString);
+        oneSet.ForEach(i => Debug.WriteLine("{0}", i));
+        Cards.AddRange(oneSet);
+        Cards.AddRange(oneSet);
+        Cards.AddRange(oneSet);
+        Cards.AddRange(oneSet);
         Logger.Shuffle<Card>(Cards);
+        Debug.WriteLine("Size of deck: "+Cards.Count);
         Cards.ForEach(i => Debug.WriteLine("{0}", i));
 
     } 
 
     public Card DrawCard() {
         int i = new Random().Next(0, Cards.Count);
-        Debug.WriteLine("Generált random szám: " + i);
         Card c = Cards[i];
         Cards.Remove(c);
         return c;

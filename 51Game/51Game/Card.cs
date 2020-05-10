@@ -1,14 +1,11 @@
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 public class Card {
     public string Name { get; set; }
     public int Value { get; set; }
+    public int Weight { get; set; }
 
-    public Card(string name, int value) {
+    public Card(string name, int value,int weight) {
         this.Name = name;
         this.Value = value;
     }

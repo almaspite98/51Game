@@ -5,17 +5,18 @@ using System.Linq;
 using System.Text;
 
 public class Pile {
-    private List<Card> cards;
+    public int Value { get; set; }
+    public List<Card> Cards { get; set; }
 
     public Pile() {
-        cards = new List<Card>();
+        Cards = new List<Card>();
     }
 
     /// <summary>
     /// @param Card c
     /// </summary>
     public void AddCard(Card c) {
-        cards.Add(c);
+        Cards.Add(c);
     }
 
 }

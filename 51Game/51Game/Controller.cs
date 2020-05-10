@@ -1,19 +1,29 @@
 
-using Newtonsoft.Json;
+
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 public class Controller {
     private static GameManager gm;
-    private static AccountList accountList;
-    private static string accountListFileName = @"accounts.txt";
+
+    private static void Method()
+    {
+        //int.Parse(Console.ReadLine());
+        string val;
+        Console.Write("Enter Integer: ");
+        val = Console.ReadLine();
+
+        int a = Convert.ToInt32(val);
+        Console.WriteLine("Your input: {0}", a);
+    }
 
     static int Main(string[] args)
     {
-        accountList = new AccountList(accountListFileName);
         gm = new GameManager();
+        gm.Start();
+        gm.Play();
+
+        Method();
         //init accountListFileName
         //String FilePath;
         //FilePath = Server.MapPath("/MyWebSite");

@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-public class GameManager {
+public class GameManager
+{
     private static uint POINTS = 51;
     private static uint DEALER_INDEX = 1;
     private static string deckFilePath = @"cards.txt";
@@ -13,33 +14,30 @@ public class GameManager {
     public Pile Pile { get; set; }
     public int Version { get; set; }
 
-    public GameManager() {
-        Deck=new Deck(deckFilePath);
+    public GameManager()
+    {
+        Deck = new Deck(deckFilePath);
         Players = new List<Player>();
-        
+
     }
 
     public void WelcomeWallText()
     {
-        Console.WriteLine("Mi legyen a Játékos neved?");
-        Console.Write("Player Name: ");
+        Console.Write("Mi legyen a Játékos neved? (string): ");
         name = Console.ReadLine();
-        Console.WriteLine("Legyen tétje a játéknak?");
-        Console.Write("hasStake (true/false): ");
-        Boolean hasStake = Boolean.Parse(Console.ReadLine());
+        Console.Write("Legyen tétje a játéknak? (true/false): ");
+        bool hasStake = bool.Parse(Console.ReadLine());
         if (hasStake)
         {
-            Console.WriteLine("És mennyi legyen a tét?");
-            Console.Write("Stake (0-2000): ");
+            Console.Write("És mennyi legyen a tét? (0-2000): ");
             bet = uint.Parse(Console.ReadLine());
         }
     }
 
     public void NewGameSreen()
     {
-        
-        Console.WriteLine("Melyik verziót szeretnéd játszani?");
-        Console.Write("Version (1 or 2): ");
+
+        Console.Write("Melyik verziót szeretnéd játszani? (1 vagy 2): ");
         Version = int.Parse(Console.ReadLine());
         //int.Parse(Console.ReadLine());
         RealPlayer realPlayer = new RealPlayer(name, bet);
@@ -48,13 +46,15 @@ public class GameManager {
         Start();
         Play();
     }
-    private void AddBotPlayer(int numOfCards) {
-        Player player1 = new Player("",bet);
+    private void AddBotPlayer(int numOfCards)
+    {
+        Player player1 = new Player("", bet);
         Players.Add(player1);
         player1.AddCardsToHand(Deck.DrawCards(numOfCards));
     }
 
-    private void Start() {
+    private void Start()
+    {
         for (int i = 0; i < 4; i++) // 3 bottal feltöltjük a játékot
         {
             if (i == 0)
@@ -70,17 +70,18 @@ public class GameManager {
             //Console.WriteLine(Players[i]);
             //replayString.Add(Players[i].ToString());
         }
-        
+
         Pile = new Pile();
         Pile.AddCard(Deck.DrawCard());
         //Console.WriteLine("Size of deck should be zero: " + Deck.Cards.Count);
     }
 
-    private void Play() {
+    private void Play()
+    {
         int i = 0;
-        while(Pile.Value < POINTS)
+        while (Pile.Value < POINTS)
         {
-            replayString.Add(Players[i%4].ToString());
+            replayString.Add(Players[i % 4].ToString());
             if (i % 4 == 0)
             {
                 Console.WriteLine();
@@ -93,13 +94,13 @@ public class GameManager {
                 Console.ReadKey();
                 return;
             }
-            Pile.Value+= valueOfCard;
+            Pile.Value += valueOfCard;
             replayString.Add("Value of pile: " + Pile.Value);
-            Console.WriteLine("Value of pile: "+ Pile.Value);
+            Console.WriteLine("Value of pile: " + Pile.Value);
             i++;
         }
-        if (Pile.Value == POINTS && Version == 2) Console.WriteLine(Players[(i-1) % 4] + " " + Pile.Value + " ponttal nyert!");
-        else Console.WriteLine(Players[(i-1) % 4] + " " + Pile.Value + " ponttal veszített!");
+        if (Pile.Value == POINTS && Version == 2) Console.WriteLine(Players[(i - 1) % 4] + " " + Pile.Value + " ponttal nyert!");
+        else Console.WriteLine(Players[(i - 1) % 4] + " " + Pile.Value + " ponttal veszített!");
 
     }
 

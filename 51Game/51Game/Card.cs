@@ -11,5 +11,5 @@ public class Card {
     }
 
     public override string ToString() {
-        return "Card: " + Name + " " + Value ; }
+        return Name + " " + Value ; }
 }

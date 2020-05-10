@@ -30,18 +30,24 @@ public class Player
 
     public override string ToString()
     {
-        //TODO if(Vannak kartyai) akkor azt is
+        int j = 0;
         string cardsString = "{";
         Cards.ForEach(i =>
         {
+            cardsString += j+": ";
             cardsString += i;
             cardsString += " ; ";
+            j++;
         });
         cardsString += "}";
         if (Cards != null) return "Player: " + Name + " " + Coins + " " + cardsString;
         else return "Player: " + Name + " " + Coins;
     }
 
+    /// <summary>
+    /// A papaméterként kapott Card listát a játékos kezéhez adja
+    /// </summary>
+    /// <param name="cards">Egy List ami Card-okat tartalmaz</param>
     public void AddCardsToHand(List<Card> cards)
     {
         Cards.AddRange(cards);

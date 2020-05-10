@@ -12,7 +12,7 @@ public class GameManager
     public List<Player> Players { get; set; }
     public Deck Deck { get; set; }
     public Pile Pile { get; set; }
-    public int Version { get; set; }
+    public int version;
 
     public GameManager()
     {
@@ -23,14 +23,25 @@ public class GameManager
 
     public void WelcomeWallText()
     {
-        Console.Write("Mi legyen a Játékos neved? (string): ");
+        Console.Write("Mi legyen a Játékos neved? (string, max hossz: 16): ");
         name = Console.ReadLine();
+        if (name.Length > 16)
+        {
+            name = name.Substring(0, 16);
+        }
         Console.Write("Legyen tétje a játéknak? (true/false): ");
-        bool hasStake = bool.Parse(Console.ReadLine());
+        bool hasStake = false;
+        while (!bool.TryParse(Console.ReadLine(), out hasStake))
+        {
+            Console.Write("Nincs ilyen válasz!\nLegyen tétje a játéknak? (true/false): ");
+        }
         if (hasStake)
         {
-            Console.Write("És mennyi legyen a tét? (0-2000): ");
-            bet = uint.Parse(Console.ReadLine());
+            Console.Write("Mennyi legyen a tét? (0-2000): ");
+            while (!uint.TryParse(Console.ReadLine(), out bet))
+            {
+                Console.Write("Nincs ilyen válasz!\nMennyi legyen a tét? (0-2000): ");
+            }
         }
     }
 
@@ -38,7 +49,10 @@ public class GameManager
     {
 
         Console.Write("Melyik verziót szeretnéd játszani? (1 vagy 2): ");
-        Version = int.Parse(Console.ReadLine());
+        while (!int.TryParse(Console.ReadLine(), out version))
+        {
+            Console.Write("Nincs ilyen válasz!\nMelyik verziót szeretnéd játszani? (1 vagy 2): ");
+        }
         //int.Parse(Console.ReadLine());
         RealPlayer realPlayer = new RealPlayer(name, bet);
         Players.Add(realPlayer); //TODO oszto forgatása: változó?
@@ -87,7 +101,7 @@ public class GameManager
                 Console.WriteLine();
                 Console.WriteLine(Players[0]);
             }
-            int valueOfCard = Players[i % 4].Turn(Pile.Value, Version);
+            int valueOfCard = Players[i % 4].Turn(Pile.Value, version);
             if (valueOfCard == -100)
             {
                 Console.WriteLine(Players[i % 4].Name + " fealadta a játékot");
@@ -99,7 +113,7 @@ public class GameManager
             Console.WriteLine("Value of pile: " + Pile.Value);
             i++;
         }
-        if (Pile.Value == POINTS && Version == 2) Console.WriteLine(Players[(i - 1) % 4] + " " + Pile.Value + " ponttal nyert!");
+        if (Pile.Value == POINTS && version == 2) Console.WriteLine(Players[(i - 1) % 4] + " " + Pile.Value + " ponttal nyert!");
         else Console.WriteLine(Players[(i - 1) % 4] + " " + Pile.Value + " ponttal veszített!");
 
     }

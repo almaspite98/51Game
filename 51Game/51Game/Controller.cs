@@ -24,7 +24,10 @@ public class Controller {
             gm.NewGameSreen();
             Console.WriteLine("Akarsz még játszani? ");
             Console.Write("Another Round(true/false) : ");
-            wannaPlay = bool.Parse(Console.ReadLine());
+            while (!bool.TryParse(Console.ReadLine(), out wannaPlay))
+            {
+                Console.Write("Nincs ilyen válasz!\nAnother Round(true/false) : ");
+            }
         }
 
         Helper.Log(GameManager.replayString, 0, REPLAY_FILE);

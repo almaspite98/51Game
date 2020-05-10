@@ -2,24 +2,27 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
-/// <summary>
-/// 
-/// </summary>
 public class Deck {
     public List<Card> Cards { get; set; }
 
     public Deck(string cardsFilePath)
     {
         Cards = new List<Card>();
+        //beolvasás a fájlból az accountokat és adataikat
         string jsonString = File.ReadAllText(cardsFilePath);
         List<Card> oneSet= JsonConvert.DeserializeObject<List<Card>>(jsonString);
+        //oneSet.ForEach(i => Console.WriteLine("{0}", i));
         Cards.AddRange(oneSet);
         Cards.AddRange(oneSet);
         Cards.AddRange(oneSet);
         Cards.AddRange(oneSet);
         Helper.Shuffle<Card>(Cards);
+        //Console.WriteLine("Size of deck: "+Cards.Count);
+        //Cards.ForEach(i => Console.WriteLine("{0}", i));
+
     } 
 
     public Card DrawCard() {

@@ -1,50 +1,17 @@
 using System;
 using System.Collections.Generic;
 
-/// <summary>
-/// Ez az osztály felel azért, hogy egy meccset lemenedzseljen
-/// </summary>
 public class GameManager
 {
-    /// <summary>
-    /// Az a pont mennyiség amit elérve vesztes/nyersz (verziótól függõen)
-    /// </summary>
     private static uint POINTS = 51;
-    /// <summary>
-    /// Osztó szerepét váltogatni kell 
-    /// </summary>
     private static uint DEALER_INDEX = 1;
-    /// <summary>
-    /// kártya pakli elérési útvonala
-    /// </summary>
     private static string deckFilePath = @"cards.txt";
-    /// <summary>
-    /// Az "újrajátszás" szövegét ebben a változóban tárolom soronként
-    /// </summary>
     public static List<string> replayString = new List<string>();
-    /// <summary>
-    /// zálog értéke
-    /// </summary>
     private static uint bet;
-    /// <summary>
-    /// játékos neve
-    /// </summary>
     private static string name;
-    /// <summary>
-    /// játékosok az adott meccsben
-    /// </summary>
     public List<Player> Players { get; set; }
-    /// <summary>
-    /// Pakli amibõl osztunk
-    /// </summary>
     public Deck Deck { get; set; }
-    /// <summary>
-    /// Dobó pakli (Összérték számít)
-    /// </summary>
     public Pile Pile { get; set; }
-    /// <summary>
-    /// Játék verziója
-    /// </summary>
     public int Version { get; set; }
 
     public GameManager()

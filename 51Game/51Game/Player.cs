@@ -94,6 +94,7 @@ public class Player
             GameManager.replayString.Add("Value of card played: " + c.Value);
         }
         return c.Value;
+
     }
 
 }

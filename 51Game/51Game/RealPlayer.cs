@@ -12,12 +12,15 @@ public class RealPlayer : Player {
         Console.WriteLine("Melyik lapod szeretnéd kijátszani?");
         int c = 0;
         Card card;
-        int PlayedCardIndex;
+        int PlayedCardIndex = 0;
         Boolean invalidInput = true;
         do
         {
             Console.Write("Index of the card: ");
-            PlayedCardIndex = int.Parse(Console.ReadLine());
+            while (!int.TryParse(Console.ReadLine(), out PlayedCardIndex))
+            {
+                Console.Write("Nincs ilyen válasz!\nIndex of the card: ");
+            }
             if (PlayedCardIndex == -1) return -100;
             if (0 <= PlayedCardIndex && PlayedCardIndex < Cards.Count) invalidInput = false;
             else Console.WriteLine("Ez egy érvénytelen index, kérlek adj meg másikat!");

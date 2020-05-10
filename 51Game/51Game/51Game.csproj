@@ -54,7 +54,7 @@
     <Compile Include="Controller.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="GameManager.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Pile.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

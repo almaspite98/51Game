@@ -5,6 +5,7 @@ public class GameManager {
     private static uint POINTS = 51;
     private static uint DEALER_INDEX = 1;
     private static string deckFilePath = @"cards.txt";
+    private static string LOG_FILE = @"log.txt";
     public static List<string> replayString = new List<string>();
     public static List<string> stateString = new List<string>();
     private static uint bet;
@@ -90,9 +91,7 @@ public class GameManager {
                 //Environment.Exit(0);
             }
             Pile.Value+= valueOfCard;
-            string roundString = Players[i % 4] + " " + Pile.Value;
-            Console.WriteLine(roundString);
-            replayString.Add(roundString);
+            Console.WriteLine("Value of pile: "+ Pile.Value);
 
             if (i % 4 == 0)
             {
@@ -100,17 +99,21 @@ public class GameManager {
                 bool b = bool.Parse(Console.ReadLine());
                 if (b)
                 {
+                    string roundString = Players[i % 4] + " " + Pile.Value;
+                    Console.WriteLine(roundString);
+                    replayString.Add(roundString);
                     Console.WriteLine("És milyen néven? ");
                     string s = Console.ReadLine();
                     GameManager.stateString.Add(s);
                     GameManager.stateString.Add(roundString);
+                    Helper.Log(GameManager.replayString, 0, LOG_FILE);
                 }
             }
             
             i++;
         }
-        if (Pile.Value == POINTS && Version == 2) Console.WriteLine(Players[i % 4] + " " + Pile.Value + " ponttal nyert!");
-        else Console.WriteLine(Players[i % 4] + " " + Pile.Value + " ponttal veszített!");
+        if (Pile.Value == POINTS && Version == 2) Console.WriteLine(Players[(i-1) % 4] + " " + Pile.Value + " ponttal nyert!");
+        else Console.WriteLine(Players[(i-1) % 4] + " " + Pile.Value + " ponttal veszített!");
 
     }
 

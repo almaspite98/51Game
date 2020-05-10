@@ -2,7 +2,7 @@
 using System;
 
 public class Controller {
-    private static string LOG_FILE = @"log.txt";
+    
     private static string REPLAY_FILE = @"replay.txt";
 
 
@@ -28,7 +28,7 @@ public class Controller {
         }
 
         Helper.Log(GameManager.replayString, 0, REPLAY_FILE);
-        Helper.Log(GameManager.replayString, 0, LOG_FILE);
+        
         
         
 

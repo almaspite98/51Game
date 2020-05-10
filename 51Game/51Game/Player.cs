@@ -3,6 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
+/// <summary>
+/// Player osztály egy játékost valósít meg
+/// Botok köreiért felel még
+/// Ebbõl származik le a RealPlayer
+/// </summary>
 public class Player
 {
     private static uint STARTING_MONEY = 2000;
@@ -53,15 +58,26 @@ public class Player
         Cards.AddRange(cards);
     }
 
+    /// <summary>
+    /// 30 pont alatt a bot rakhat bármit, csak ne 8 || 0 || -1-et
+    /// </summary>
+    /// <returns></returns>
     private Card NotEndGameMove()
     {
         foreach(Card c in Cards){
             if (c.Value != 8 && (c.Value != 0 || c.Value != -1)) return c;
         }
-        return Cards[new Random().Next(0, Cards.Count)]; //might be null!
+        return Cards[new Random().Next(0, Cards.Count)]; 
     }
 
-    private Card EndGameMove(int valueOfPile,int version) //max kiválasztás
+
+    /// <summary>
+    /// 30 pont fölött pedig igyekezzen minél jobba megközelíteni az 51 pontot (vagy elérni)
+    /// </summary>
+    /// <param name="valueOfPile"> Dobópakli értéke </param>
+    /// <param name="version"> Játék verziója </param>
+    /// <returns></returns>
+    private Card EndGameMove(int valueOfPile,int version) 
     {
         int maxi = 0;
         for(int i = 0; i < Cards.Count; i++)
@@ -78,9 +94,17 @@ public class Player
         }
         if (45 < valueOfPile + Cards[maxi].Value && valueOfPile + Cards[maxi].Value < POINTS_TO_LOSE) Console.WriteLine("Huhh ez közel volt...");
         if(valueOfPile + Cards[maxi].Value >= POINTS_TO_LOSE) Console.WriteLine("A csudába...");
-        return Cards[maxi]; //might be null!
+        return Cards[maxi]; 
     }
 
+
+    /// <summary>
+    /// Virtuális függvény (RealPlayer miatt)
+    /// Egy játékos egy körének az összefoglaló metódusa : Egy lap kijátszása
+    /// </summary>
+    /// <param name="valueOfPile"> Dobó pakli összértéke </param>
+    /// <param name="version"> Játék verziója </param>
+    /// <returns></returns>
     public virtual int Turn(int valueOfPile,int version)
     {
         Card c;

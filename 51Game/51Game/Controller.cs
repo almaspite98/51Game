@@ -1,12 +1,21 @@
 
 using System;
 
+/// <summary>
+/// Játékék indításáért felelõ osztály
+/// </summary>
 public class Controller {
-    
+    /// <summary>
+    /// "újrajátszás" fájl
+    /// </summary>
     private static string REPLAY_FILE = @"replay.txt";
 
-
-
+    /// <summary>
+    /// Játkokat indít a Main amíg a Játékos játszani szeretne
+    /// Majd kiírajta a fáljba a meccset szövegesítve, és a konzolra is kiírja
+    /// </summary>
+    /// <param name="args"></param>
+    /// <returns></returns>
     static int Main(string[] args)
     {
         Console.WriteLine("Üdvözlünk az 51 Game-ben!");

@@ -1,5 +1,7 @@
 
-
+/// <summary>
+/// Kártya osztály megvalósításáért felel: Van neve és értéke egy kártyának
+/// </summary>
 public class Card {
     public string Name { get; set; }
     public int Value { get; set; }

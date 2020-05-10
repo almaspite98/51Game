@@ -3,6 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+/// <summary>
+/// Statikus segédfüggvények összefogó osztálya
+/// Logolásért és Collection mûveletekért felel
+/// </summary>
 public static class Helper {
     
     private static Random rng = new Random();

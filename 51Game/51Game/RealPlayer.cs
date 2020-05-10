@@ -1,11 +1,21 @@
 
 using System;
 
+/// <summary>
+/// Valódi Játékos megvalósításáért felelõs osztály
+/// Játékos tud szabadon dönteni, hogy egy körben melyik kártyát játsza ki
+/// </summary>
 public class RealPlayer : Player {
     public RealPlayer(string name, uint money) : base(name, money)
     {
     }
-
+    /// <summary>
+    /// Ez egy override-ja a Player turn metódsának
+    /// Játékos tud szabadon dönteni, hogy egy körben melyik kártyát játsza ki
+    /// </summary>
+    /// <param name="valueOfPile"> Dobópakli összértéke </param>
+    /// <param name="version"> Játék verziója </param>
+    /// <returns></returns>
     public override int Turn(int valueOfPile,int version)
     {
         //play a card

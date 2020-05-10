@@ -1,26 +1,61 @@
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// Ez az osztály felel azért, hogy egy meccset lemenedzseljen
+/// </summary>
 public class GameManager
 {
+    /// <summary>
+    /// Az a pont mennyiség amit elérve vesztes/nyersz (verziótól függõen)
+    /// </summary>
     private static uint POINTS = 51;
+    /// <summary>
+    /// Osztó szerepét válogatni kell 
+    /// </summary>
     private static uint DEALER_INDEX = 1;
+    /// <summary>
+    /// Kártyák elérési útvonala
+    /// </summary>
     private static string deckFilePath = @"cards.txt";
+    /// <summary>
+    /// Az "újrajátszás" szövegét ebben a változóban tárolom soronként
+    /// </summary>
     public static List<string> replayString = new List<string>();
+    /// <summary>
+    /// zálog értéke
+    /// </summary>
     private static uint bet;
+    /// <summary>
+    /// játékos neve
+    /// </summary>
     private static string name;
+    /// <summary>
+    /// játékosok az adott meccsben
+    /// </summary>
     public List<Player> Players { get; set; }
+    /// <summary>
+    /// Pakli amibõl osztunk
+    /// </summary>
     public Deck Deck { get; set; }
+    /// <summary>
+    /// Dobó pakli 
+    /// </summary>
     public Pile Pile { get; set; }
+    /// <summary>
+    /// Játék verziója
+    /// </summary>
     public int version;
 
     public GameManager()
     {
         Deck = new Deck(deckFilePath);
         Players = new List<Player>();
-
     }
 
+    /// <summary>
+    /// A legelsõ játék esetén ez a metódus veszi fel a Játékos alapadatait
+    /// </summary>
     public void WelcomeWallText()
     {
         Console.Write("Mi legyen a Játékos neved? (string, max hossz: 16): ");
@@ -45,6 +80,10 @@ public class GameManager
         }
     }
 
+    /// <summary>
+    /// Minden további játék indításakor lehet verziót változtatni.
+    /// Ez a metódus indítja el a változók inicializálását (Start) és a játékmenetet (Play)
+    /// </summary>
     public void NewGameSreen()
     {
 
@@ -53,13 +92,17 @@ public class GameManager
         {
             Console.Write("Nincs ilyen válasz!\nMelyik verziót szeretnéd játszani? (1 vagy 2): ");
         }
-        //int.Parse(Console.ReadLine());
         RealPlayer realPlayer = new RealPlayer(name, bet);
-        Players.Add(realPlayer); //TODO oszto forgatása: változó?
+        Players.Add(realPlayer); 
 
         Start();
         Play();
     }
+
+    /// <summary>
+    /// Bot játékos hozzáadása a játékhoz
+    /// </summary>
+    /// <param name="numOfCards"> Amennyi kártya kell a kezébe </param>
     private void AddBotPlayer(int numOfCards)
     {
         Player player1 = new Player("", bet);
@@ -67,6 +110,9 @@ public class GameManager
         player1.AddCardsToHand(Deck.DrawCards(numOfCards));
     }
 
+    /// <summary>
+    /// Változók feltöltésért felel
+    /// </summary>
     private void Start()
     {
         for (int i = 0; i < 4; i++) // 3 bottal feltöltjük a játékot
@@ -81,15 +127,17 @@ public class GameManager
                 if (DEALER_INDEX % 4 == i) AddBotPlayer(7); //osztó csak 7 lapot kap
                 else AddBotPlayer(8);
             }
-            //Console.WriteLine(Players[i]);
-            //replayString.Add(Players[i].ToString());
         }
 
         Pile = new Pile();
         Pile.AddCard(Deck.DrawCard());
-        //Console.WriteLine("Size of deck should be zero: " + Deck.Cards.Count);
     }
 
+    /// <summary>
+    /// Egy meccs levezetéséért felelõs függvény
+    /// Körönként Játékosok kártyákat játszanak ki, aminek az értékével nõ a dobó pakli
+    /// Majd 51 után gyõztest/vesztest hirdet
+    /// </summary>
     private void Play()
     {
         int i = 0;

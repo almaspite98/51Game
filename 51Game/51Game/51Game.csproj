@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>_51Game</RootNamespace>
     <AssemblyName>51Game</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>

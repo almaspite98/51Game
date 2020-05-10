@@ -31,6 +31,7 @@ public class RealPlayer : Player {
         } while (invalidInput);
         card = Cards[i];
         Cards.RemoveAt(i);
+        GameManager.replayString.Add("Value of card played: " + card.Value);
         return card.Value;//c.Value;
 
     }

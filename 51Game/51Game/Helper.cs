@@ -23,4 +23,9 @@ public static class Helper {
         File.WriteAllLines(fileName, lines);
     }
 
+    public static void ReadLog(string fileName)
+    {
+        Console.WriteLine(File.ReadAllText(fileName));
+    }
+
 }

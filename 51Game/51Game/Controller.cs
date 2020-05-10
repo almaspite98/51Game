@@ -28,16 +28,8 @@ public class Controller {
         }
 
         Helper.Log(GameManager.replayString, 0, REPLAY_FILE);
-        
-        
-        
-
-
-        //init accountListFileName
-        //String FilePath;
-        //FilePath = Server.MapPath("/MyWebSite");
-
-        
+        Helper.ReadLog(REPLAY_FILE);
+        Console.ReadKey();
         return 0;
     }
 }

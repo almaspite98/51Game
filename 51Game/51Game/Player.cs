@@ -85,6 +85,7 @@ public class Player
         {
             Cards.Remove(c);
             Console.WriteLine("Value of card played: " + c.Value);
+            GameManager.replayString.Add("Value of card played: " + c.Value);
         }
         return c.Value;
 

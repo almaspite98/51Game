@@ -13,17 +13,18 @@ public class Player
     public uint Coins { get; set; }
     public List<Card> Cards { get; set; }
 
-    public Player()
+    public Player(uint money)
     {
         Name = "Random_player" + COUNTER++;
-        Coins = STARTING_MONEY;
+        Coins = money;
         Cards = new List<Card>();
     }
 
-    public Player(string name)
+    public Player(string name,uint money)
     {
-        Name = name;
-        Coins = STARTING_MONEY;
+        if(name.Length==0) Name = "Random_player" + COUNTER++;
+        else Name = name;
+        Coins = money;
         Cards = new List<Card>();
     }
 
@@ -61,7 +62,7 @@ public class Player
         {
             if (version==2 && valueOfPile + Cards[i].Value == POINTS_TO_LOSE)
             {
-                Debug.WriteLine("Ezaz! Nyertem!");
+                Console.WriteLine("Ezaz! Nyertem!");
                 return Cards[i];
             }
             if (valueOfPile+Cards[i].Value < POINTS_TO_LOSE && Cards[i].Value > Cards[maxi].Value)
@@ -69,23 +70,21 @@ public class Player
                 maxi = i;
             }
         }
-        if (45 < valueOfPile + Cards[maxi].Value && valueOfPile + Cards[maxi].Value < POINTS_TO_LOSE) Debug.WriteLine("Huhh ez közel volt...");
-        if(valueOfPile + Cards[maxi].Value >= POINTS_TO_LOSE) Debug.WriteLine("A csudába...");
+        if (45 < valueOfPile + Cards[maxi].Value && valueOfPile + Cards[maxi].Value < POINTS_TO_LOSE) Console.WriteLine("Huhh ez közel volt...");
+        if(valueOfPile + Cards[maxi].Value >= POINTS_TO_LOSE) Console.WriteLine("A csudába...");
         return Cards[maxi]; //might be null!
     }
 
-    public virtual int Turn(int valueOfPile)
+    public virtual int Turn(int valueOfPile,int version)
     {
-        // TODO implement here
-        //play a card
         Card c;
         if (valueOfPile <= TURNING_POINT) c = NotEndGameMove();
-        else c = EndGameMove(valueOfPile,1);
-        if (c == null) Debug.WriteLine("Kifogytam a lapokból!");
+        else c = EndGameMove(valueOfPile,version);
+        if (c == null) Console.WriteLine("Kifogytam a lapokból!");
         else
         {
             Cards.Remove(c);
-            Debug.WriteLine("Value of card played: " + c.Value);
+            Console.WriteLine("Value of card played: " + c.Value);
         }
         return c.Value;
 

@@ -14,14 +14,14 @@ public class Deck {
         //beolvasás a fájlból az accountokat és adataikat
         string jsonString = File.ReadAllText(cardsFilePath);
         List<Card> oneSet= JsonConvert.DeserializeObject<List<Card>>(jsonString);
-        oneSet.ForEach(i => Debug.WriteLine("{0}", i));
+        //oneSet.ForEach(i => Console.WriteLine("{0}", i));
         Cards.AddRange(oneSet);
         Cards.AddRange(oneSet);
         Cards.AddRange(oneSet);
         Cards.AddRange(oneSet);
-        Logger.Shuffle<Card>(Cards);
-        Debug.WriteLine("Size of deck: "+Cards.Count);
-        Cards.ForEach(i => Debug.WriteLine("{0}", i));
+        Helper.Shuffle<Card>(Cards);
+        //Console.WriteLine("Size of deck: "+Cards.Count);
+        //Cards.ForEach(i => Console.WriteLine("{0}", i));
 
     } 
 

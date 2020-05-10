@@ -1,10 +1,12 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
-public static class Logger {
+public static class Helper {
+    
     private static Random rng = new Random();
     public static void Shuffle<T>(this IList<T> list)
     {
@@ -19,8 +21,8 @@ public static class Logger {
         }
     }
 
-    public static void Log() {
-        // TODO implement here
+    public static void Log(List<string> lines,int tabs,string fileName) {
+        File.WriteAllLines(fileName, lines);
     }
 
 }
